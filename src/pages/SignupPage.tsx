@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import RegisterForm from '../components/auth/SignupForm';
 import { fetchWithHandler } from '../utils/fetchWithHandler';
 import { signUp } from '../apis/auth';
+import styles from './styles/SignupPage.module.css';
 
 export default function SignupPage() {
   const [email, setEmail] = useState<string>('');
@@ -35,8 +36,8 @@ export default function SignupPage() {
 
   return (
     <main>
-      <div className="flex flex-col items-center gap-6 p-4">
-        <Link to="/" className="my-4 text-4xl font-bold">Clove</Link>
+      <div className={styles.container}>
+        <Link to="/" className={styles.homeLink}>Clove</Link>
         <RegisterForm
           email={email}
           setEmail={setEmail}

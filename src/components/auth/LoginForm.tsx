@@ -1,5 +1,6 @@
 import Button from '../common/Button';
 import TextInput from '../common/TextInput';
+import styles from '../styles/LoginForm.module.css';
 
 interface LoginFormProps {
   email: string;
@@ -19,10 +20,10 @@ export default function LoginForm({
   return (
     <div>
       <form
-        className="flex flex-col items-stretch gap-12"
+        className={styles.formContainer}
         onSubmit={handleLogin}
       >
-        <div className="flex flex-col gap-6">
+        <div className={styles.form}>
           <TextInput
             name="이메일"
             value={email}
@@ -37,7 +38,7 @@ export default function LoginForm({
             required
           />
         </div>
-        <div className="flex flex-col items-center">
+        <div className={styles.buttonContainer}>
           <Button
             type="submit"
           >

@@ -1,5 +1,6 @@
 import Button from '../common/Button';
 import TextInput from '../common/TextInput';
+import styles from '../styles/SignupForm.module.css';
 
 interface RegisterFormProps {
   email: string;
@@ -27,10 +28,10 @@ export default function RegisterForm({
   return (
     <div>
       <form
-        className="flex flex-col items-stretch gap-12"
+        className={styles.formContainer}
         onSubmit={handleRegister}
       >
-        <div className="flex flex-col gap-6">
+        <div className={styles.form}>
           <TextInput
             name="이메일"
             value={email}
@@ -51,10 +52,10 @@ export default function RegisterForm({
             secret
             required
           />
-          <div className="flex justify-center">회원 구분</div>
-          <div className="flex flex-row justify-evenly">
+          <div className={styles.radioTitle}>회원 구분</div>
+          <div className={styles.radioContainer}>
             <label
-              className="flex flex-row gap-2"
+              className={styles.radioLabel}
               htmlFor="client"
             >
               <input
@@ -68,7 +69,7 @@ export default function RegisterForm({
               예매자
             </label>
             <label
-              className="flex flex-row gap-2"
+              className={styles.radioLabel}
               htmlFor="owner"
             >
               <input
@@ -83,7 +84,7 @@ export default function RegisterForm({
             </label>
           </div>
         </div>
-        <div className="flex flex-col items-center">
+        <div className={styles.buttonContainer}>
           <Button
             type="submit"
           >

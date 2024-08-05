@@ -8,6 +8,7 @@ import { useAuth } from '../hooks/useAuth';
 import { fetchWithHandler } from '../utils/fetchWithHandler';
 import { LoginResponse } from '../utils/type';
 import { login } from '../apis/auth';
+import styles from './styles/LoginPage.module.css';
 
 export default function LoginPage() {
   const [email, setEmail] = useState<string>('');
@@ -45,8 +46,8 @@ export default function LoginPage() {
 
   return (
     <main>
-      <div className="flex flex-col items-center gap-6 p-4">
-        <Link to="/" className="my-4 text-4xl font-bold">Clove</Link>
+      <div className={styles.container}>
+        <Link to="/" className={styles.homeLink}>Clove</Link>
         <LoginForm
           email={email}
           setEmail={setEmail}
@@ -54,7 +55,7 @@ export default function LoginPage() {
           setPassword={setPassword}
           handleLogin={handleLogin}
         />
-        <Link className="underline" to="/register">회원가입</Link>
+        <Link to="/register">회원가입</Link>
       </div>
     </main>
   );

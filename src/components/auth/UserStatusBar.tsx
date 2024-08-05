@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { deleteToken, getExistToken } from '../../utils/auth';
 import { useAuth } from '../../hooks/useAuth';
 import Divider from '../common/Divider';
+import styles from '../styles/UserStatusBar.module.css';
 
 export default function UserStatusBar() {
   const { auth, setAuth } = useAuth();
@@ -24,14 +25,14 @@ export default function UserStatusBar() {
 
   if (!auth.isLogin) {
     return (
-      <div className="px-2 py-1">
+      <div className={styles.container}>
         <Link to="/login">로그인</Link>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-row items-center gap-4 p-2">
+    <div className={styles.container}>
       <div>
         사용자 이름
       </div>
