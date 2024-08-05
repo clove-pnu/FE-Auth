@@ -6,7 +6,10 @@ import { Auth } from '../utils/type';
 const AuthContext = createContext<{
   auth: Auth;
   setAuth: React.Dispatch<React.SetStateAction<Auth>>;
-}>(null);
+}>({
+  auth: null,
+  setAuth: null,
+});
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [auth, setAuth] = useState<Auth>({ isLogin: false });

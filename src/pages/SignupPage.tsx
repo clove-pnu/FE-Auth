@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import RegisterForm from '../../components/auth/SignupForm';
-import { fetchWithHandler } from '../../utils/fetchWithHandler';
-import { signUp } from '../../apis/auth';
+import RegisterForm from '../components/auth/SignupForm';
+import { fetchWithHandler } from '../utils/fetchWithHandler';
+import { signUp } from '../apis/auth';
 
-export default function RegisterPage() {
+export default function SignupPage() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');

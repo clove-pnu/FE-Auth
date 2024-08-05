@@ -1,8 +1,7 @@
 {
-  "name": "fe-main",
+  "name": "fe-auth",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --mode development",
@@ -13,9 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.7.2",
-    "chart.js": "^4.4.3",
     "react": "^18.3.1",
-    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.1"
   },

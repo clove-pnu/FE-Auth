@@ -7,11 +7,3 @@ export const authInstance = axios.create({
     'Content-Type': 'application/json',
   },
 });
-
-export const deployInstance = axios.create({
-  baseURL: '/api/deploy',
-  timeout: 3000,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
