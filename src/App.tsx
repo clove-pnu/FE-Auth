@@ -1,14 +1,17 @@
-import React, { Suspense } from 'react';
-
-const RemoteButton = React.lazy(() => import('remoteApp/Button'));
+import { BrowserRouter } from 'react-router-dom';
+import UserStatusBar from './components/auth/UserStatusBar';
+import { AuthProvider } from './hooks/useAuth';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
 
 export default function App() {
   return (
-    <div>
-      Hello, world!
-      <Suspense fallback={<div>Loading...</div>}>
-        <RemoteButton />
-      </Suspense>
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <LoginPage />
+        <SignupPage />
+        <UserStatusBar />
+      </BrowserRouter>
+    </AuthProvider>
   );
 }

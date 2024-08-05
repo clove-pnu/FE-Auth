@@ -6,11 +6,12 @@ const { ModuleFederationPlugin } = require('webpack').container;
 module.exports = {
   entry: './src/index.tsx',
   output: {
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: 'auto',
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: ['.ts', '.tsx', '.js', 'css'],
   },
   module: {
     rules: [
@@ -21,7 +22,25 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader', 'postcss-loader'],
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                namedExport: false,
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
       },
     ],
   },
@@ -31,18 +50,29 @@ module.exports = {
       template: './public/index.html',
     }),
     new ModuleFederationPlugin({
-      name: 'hostApp',
-      remotes: {
-        remoteApp: 'remoteApp@http://localhost:3001/remoteEntry.js',
+      name: 'auth',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './useAuth': './src/hooks/useAuth',
+        './LoginPage': './src/pages/LoginPage',
+        './SignupPage': './src/pages/SignupPage',
+        './PrivateRoute': './src/pages/PrivateRoute',
+        './UserStatusBar': './src/components/auth/UserStatusBar',
       },
-      shared: ['react', 'react-dom'],
+      shared: ['react', 'react-dom', 'react-router-dom', 'axios'],
     }),
   ],
   devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'),
-    },
-    compress: true,
-    port: 3000,
+    static: [
+      {
+        directory: path.join(__dirname, 'public'),
+      },
+      {
+        directory: path.join(__dirname, 'dist'),
+      },
+    ],
+    compress: false,
+    port: 3001,
+    historyApiFallback: true,
   },
 };
