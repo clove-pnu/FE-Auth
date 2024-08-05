@@ -56,8 +56,10 @@ module.exports = {
         './useAuth': './src/hooks/useAuth',
         './LoginPage': './src/pages/LoginPage',
         './SignupPage': './src/pages/SignupPage',
+        './PrivateRoute': './src/pages/PrivateRoute',
+        './UserStatusBar': './src/components/auth/UserStatusBar',
       },
-      shared: ['react', 'react-dom', 'react-router-dom'],
+      shared: ['react', 'react-dom', 'react-router-dom', 'axios'],
     }),
   ],
   devServer: {
