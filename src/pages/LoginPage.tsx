@@ -55,7 +55,7 @@ export default function LoginPage() {
           setPassword={setPassword}
           handleLogin={handleLogin}
         />
-        <Link to="/register">회원가입</Link>
+        <Link to="/signup">회원가입</Link>
       </div>
     </main>
   );
