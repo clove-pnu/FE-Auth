@@ -11,7 +11,7 @@ module.exports = {
     publicPath: 'auto',
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', 'css'],
+    extensions: ['.ts', '.tsx', '.js', '.css'],
   },
   module: {
     rules: [
@@ -58,6 +58,7 @@ module.exports = {
         './SignupPage': './src/pages/SignupPage',
         './PrivateRoute': './src/pages/PrivateRoute',
         './UserStatusBar': './src/components/auth/UserStatusBar',
+        './reissue': './src/apis/reissue',
       },
       shared: ['react', 'react-dom', 'react-router-dom', 'axios'],
     }),
