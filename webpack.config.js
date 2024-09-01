@@ -6,12 +6,12 @@ const { ModuleFederationPlugin } = require('webpack').container;
 module.exports = {
   entry: './src/index.tsx',
   output: {
-    filename: '[name].bundle.js',
+    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: 'auto',
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', 'css'],
+    extensions: ['.ts', '.tsx', '.js', '.css'],
   },
   module: {
     rules: [
@@ -53,11 +53,12 @@ module.exports = {
       name: 'auth',
       filename: 'remoteEntry.js',
       exposes: {
-        './useAuth': './src/hooks/useAuth',
+        './AuthProvider': './src/contexts/AuthProvider',
         './LoginPage': './src/pages/LoginPage',
         './SignupPage': './src/pages/SignupPage',
         './PrivateRoute': './src/pages/PrivateRoute',
         './UserStatusBar': './src/components/auth/UserStatusBar',
+        './reissue': './src/apis/reissue',
       },
       shared: ['react', 'react-dom', 'react-router-dom', 'axios'],
     }),
@@ -74,5 +75,13 @@ module.exports = {
     compress: false,
     port: 3001,
     historyApiFallback: true,
+    proxy: [
+      {
+        context: ['/api/auth'],
+        target: 'http://34.47.117.26',
+        pathRewrite: { '^/api/auth': '/auth' },
+        changeOrigin: true,
+      },
+    ],
   },
 };

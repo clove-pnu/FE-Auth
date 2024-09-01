@@ -5,3 +5,11 @@
   gap: 1rem;
   padding: 0.5rem;
 }
+
+.logout {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+}

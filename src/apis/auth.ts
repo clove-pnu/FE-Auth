@@ -7,10 +7,6 @@ interface LoginParams {
   password: string;
 }
 
-interface ReissueParams {
-  accessToken: string;
-}
-
 export async function signUp({
   email,
   password,
@@ -26,13 +22,5 @@ export async function login({
 }: LoginParams): Promise<AxiosResponse<LoginResponse>> {
   return authInstance.post('/login', {
     email, password,
-  });
-}
-
-export async function reissue({
-  accessToken,
-}: ReissueParams): Promise<AxiosResponse<LoginResponse>> {
-  return authInstance.post('/reissue', {
-    accessToken,
   });
 }
