@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { deleteToken } from '../../utils/auth';
-import { useAuth } from '../../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 import Divider from '../common/Divider';
 import styles from '../styles/UserStatusBar.module.css';
 
@@ -24,10 +24,6 @@ export default function UserStatusBar() {
 
   return (
     <div className={styles.container}>
-      <div>
-        사용자 이름
-      </div>
-      <Divider />
       <Link to="./owner">
         공연 관리
       </Link>

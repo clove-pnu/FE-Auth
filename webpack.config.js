@@ -53,7 +53,7 @@ module.exports = {
       name: 'auth',
       filename: 'remoteEntry.js',
       exposes: {
-        './useAuth': './src/hooks/useAuth',
+        './AuthProvider': './src/contexts/AuthProvider',
         './LoginPage': './src/pages/LoginPage',
         './SignupPage': './src/pages/SignupPage',
         './PrivateRoute': './src/pages/PrivateRoute',
@@ -75,5 +75,13 @@ module.exports = {
     compress: false,
     port: 3001,
     historyApiFallback: true,
+    proxy: [
+      {
+        context: ['/api/auth'],
+        target: 'http://34.47.117.26',
+        pathRewrite: { '^/api/auth': '/auth' },
+        changeOrigin: true,
+      },
+    ],
   },
 };

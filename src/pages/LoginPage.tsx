@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 import LoginForm from '../components/auth/LoginForm';
 import { setToken } from '../utils/auth';
-import { useAuth } from '../hooks/useAuth';
+import useAuth from '../hooks/useAuth';
 import { fetchWithHandler } from '../utils/fetchWithHandler';
 import { LoginResponse } from '../utils/type';
 import { login } from '../apis/auth';
