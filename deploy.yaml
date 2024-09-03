@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fe-auth-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fe-auth
+  template:
+    metadata:
+      labels:
+        app: fe-auth
+    spec:
+      containers:
+        - name: fe-auth
+          image: dhlclove/fe-auth:1.0.0
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fe-auth-service
+spec:
+  selector:
+    app: fe-auth
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: fe-auth-route
+spec:
+  parentRefs:
+  - name: gateway
+    namespace: istio-ingress
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /page/auth
+    backendRefs:
+    - name: fe-auth-service
+      port: 80
+    filters:
+      - type: URLRewrite
+        urlRewrite:
+          path:
+            type: ReplacePrefixMatch
+            replacePrefixMatch: /

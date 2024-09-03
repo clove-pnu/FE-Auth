@@ -8,7 +8,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: 'auto',
+    publicPath: '/page/auth/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.css'],
@@ -75,13 +75,5 @@ module.exports = {
     compress: false,
     port: 3001,
     historyApiFallback: true,
-    proxy: [
-      {
-        context: ['/api/auth'],
-        target: 'http://34.47.117.26',
-        pathRewrite: { '^/api/auth': '/auth' },
-        changeOrigin: true,
-      },
-    ],
   },
 };
