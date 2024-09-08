@@ -3,6 +3,7 @@ import useAuth from '../../hooks/useAuth';
 import Divider from '../common/Divider';
 import styles from '../styles/UserStatusBar.module.css';
 import { setLogout } from '../../utils/auth';
+import { logout } from '../../apis/auth';
 
 export default function UserStatusBar() {
   const { auth, setAuth } = useAuth();
@@ -11,6 +12,7 @@ export default function UserStatusBar() {
     e.preventDefault();
 
     setLogout();
+    logout();
     setAuth({ isLogin: false });
   };
 

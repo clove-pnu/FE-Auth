@@ -36,3 +36,7 @@ export async function login({
     email, password,
   });
 }
+
+export async function logout() {
+  return authInstance.post('/logout');
+}
