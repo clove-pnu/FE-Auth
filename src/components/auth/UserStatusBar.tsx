@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { deleteToken } from '../../utils/auth';
 import useAuth from '../../hooks/useAuth';
 import Divider from '../common/Divider';
 import styles from '../styles/UserStatusBar.module.css';
+import { setLogout } from '../../utils/auth';
 
 export default function UserStatusBar() {
   const { auth, setAuth } = useAuth();
@@ -10,7 +10,7 @@ export default function UserStatusBar() {
   const handleLogout = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    deleteToken();
+    setLogout();
     setAuth({ isLogin: false });
   };
 

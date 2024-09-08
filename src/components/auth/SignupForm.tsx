@@ -9,8 +9,10 @@ interface RegisterFormProps {
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   confirmPassword: string;
   setConfirmPassword: React.Dispatch<React.SetStateAction<string>>;
-  userType: number;
-  setUserType: React.Dispatch<React.SetStateAction<number>>;
+  username: string;
+  setUsername: React.Dispatch<React.SetStateAction<string>>;
+  userType: string;
+  setUserType: React.Dispatch<React.SetStateAction<string>>;
   handleRegister: React.FormEventHandler<HTMLFormElement>;
 }
 
@@ -21,6 +23,8 @@ export default function RegisterForm({
   setPassword,
   confirmPassword,
   setConfirmPassword,
+  username,
+  setUsername,
   userType,
   setUserType,
   handleRegister,
@@ -52,6 +56,12 @@ export default function RegisterForm({
             secret
             required
           />
+          <TextInput
+            name="사용자 이름"
+            value={username}
+            setValue={setUsername}
+            required
+          />
           <div className={styles.radioTitle}>회원 구분</div>
           <div className={styles.radioContainer}>
             <label
@@ -62,9 +72,9 @@ export default function RegisterForm({
                 type="radio"
                 name="userType"
                 id="client"
-                value={0}
-                checked={userType === 0}
-                onChange={(e) => setUserType(Number(e.target.value))}
+                value="CLIENT"
+                checked={userType === 'CLIENT'}
+                onChange={() => setUserType('CLIENT')}
               />
               예매자
             </label>
@@ -76,9 +86,9 @@ export default function RegisterForm({
                 type="radio"
                 name="userType"
                 id="owner"
-                value={1}
-                checked={userType === 1}
-                onChange={(e) => setUserType(Number(e.target.value))}
+                value="PROVIDER"
+                checked={userType === 'PROVIDER'}
+                onChange={() => setUserType('PROVIDER')}
               />
               판매자
             </label>

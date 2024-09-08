@@ -3,12 +3,12 @@ import {
   Link, useLocation, useNavigate,
 } from 'react-router-dom';
 import LoginForm from '../components/auth/LoginForm';
-import { setToken } from '../utils/auth';
 import useAuth from '../hooks/useAuth';
 import { fetchWithHandler } from '../utils/fetchWithHandler';
 import { LoginResponse } from '../utils/type';
 import { login } from '../apis/auth';
 import styles from './styles/LoginPage.module.css';
+import { setLogin } from '../utils/auth';
 
 export default function LoginPage() {
   const [email, setEmail] = useState<string>('');
@@ -27,12 +27,8 @@ export default function LoginPage() {
     e.preventDefault();
 
     fetchWithHandler<LoginResponse>(() => login({ email, password }), {
-      onSuccess: (response) => {
-        setToken({
-          grantType: response.data.grantType,
-          accessToken: response.data.accessToken,
-          accessTokenExpiresIn: response.data.accessTokenExpiresIn,
-        });
+      onSuccess: () => {
+        setLogin();
         setAuth({ isLogin: true });
       },
       onError: () => {

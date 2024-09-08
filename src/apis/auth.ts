@@ -2,6 +2,13 @@ import { AxiosResponse } from 'axios';
 import { authInstance } from './instance';
 import { LoginResponse, SignUpResponse } from '../utils/type';
 
+interface SignupParams {
+  email: string;
+  password: string;
+  username: string;
+  userType: 'CLIENT' | 'PROVIDER';
+}
+
 interface LoginParams {
   email: string;
   password: string;
@@ -10,9 +17,14 @@ interface LoginParams {
 export async function signUp({
   email,
   password,
-}: LoginParams): Promise<AxiosResponse<SignUpResponse>> {
+  username,
+  userType,
+}: SignupParams): Promise<AxiosResponse<SignUpResponse>> {
   return authInstance.post('/signup', {
-    email, password,
+    email,
+    password,
+    userName: username,
+    authority: userType,
   });
 }
 

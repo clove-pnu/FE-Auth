@@ -1,19 +1,12 @@
-import { LoginResponse } from './type';
-
-export function getExistToken() {
-  return localStorage.getItem('accessToken');
+export function setLogin() {
+  localStorage.setItem('isLogin', 'true');
 }
 
-export function getTokenExpireDate() {
-  return Number(localStorage.getItem('accessTokenExpiresIn'));
+export function setLogout() {
+  localStorage.setItem('isLogin', 'false');
 }
 
-export function setToken({ grantType, accessToken, accessTokenExpiresIn }: LoginResponse) {
-  localStorage.setItem('accessToken', `${grantType} ${accessToken}`);
-  localStorage.setItem('accessTokenExpiresIn', accessTokenExpiresIn.toString());
-}
-
-export function deleteToken() {
-  localStorage.removeItem('accessToken');
-  localStorage.removeItem('accessTokenExpiresIn');
+export function getLoginFlag() {
+  const flag = localStorage.getItem('isLogin');
+  return flag === null ? 'false' : flag;
 }

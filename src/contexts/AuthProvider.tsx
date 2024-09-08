@@ -2,17 +2,17 @@ import {
   ReactNode, useEffect, useMemo, useState,
 } from 'react';
 import { Auth } from '../utils/type';
-import { getExistToken } from '../utils/auth';
 import { AuthContext } from './AuthContext';
+import { getLoginFlag } from '../utils/auth';
 
 export default function AuthProvider({ children }: { children: ReactNode }) {
   const [auth, setAuth] = useState<Auth>({ isLogin: false });
   const value = useMemo(() => ({ auth, setAuth }), [auth, setAuth]);
 
   useEffect(() => {
-    const token = getExistToken();
+    const token = getLoginFlag();
 
-    if (token) {
+    if (token === 'true') {
       setAuth({ isLogin: true });
     }
   }, []);

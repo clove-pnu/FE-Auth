@@ -9,14 +9,17 @@ export default function SignupPage() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [userType, setUserType] = useState<number>(0);
+  const [username, setUsername] = useState<string>('');
+  const [userType, setUserType] = useState<'CLIENT' | 'PROVIDER'>('CLIENT');
   const navigate = useNavigate();
 
   const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (password === confirmPassword) {
-      fetchWithHandler(() => signUp({ email, password }), {
+      fetchWithHandler(() => signUp({
+        email, password, username, userType,
+      }), {
         onSuccess: (response) => {
           alert(`${response.data.email}로 회원가입이 완료되었습니다.`);
           navigate('/');
@@ -46,6 +49,8 @@ export default function SignupPage() {
           confirmPassword={confirmPassword}
           setConfirmPassword={setConfirmPassword}
           handleRegister={handleRegister}
+          username={username}
+          setUsername={setUsername}
           userType={userType}
           setUserType={setUserType}
         />
