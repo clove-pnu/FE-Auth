@@ -9,8 +9,6 @@ interface RegisterFormProps {
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   confirmPassword: string;
   setConfirmPassword: React.Dispatch<React.SetStateAction<string>>;
-  username: string;
-  setUsername: React.Dispatch<React.SetStateAction<string>>;
   userType: string;
   setUserType: React.Dispatch<React.SetStateAction<string>>;
   handleRegister: React.FormEventHandler<HTMLFormElement>;
@@ -23,8 +21,6 @@ export default function RegisterForm({
   setPassword,
   confirmPassword,
   setConfirmPassword,
-  username,
-  setUsername,
   userType,
   setUserType,
   handleRegister,
@@ -54,12 +50,6 @@ export default function RegisterForm({
             value={confirmPassword}
             setValue={setConfirmPassword}
             secret
-            required
-          />
-          <TextInput
-            name="사용자 이름"
-            value={username}
-            setValue={setUsername}
             required
           />
           <div className={styles.radioTitle}>회원 구분</div>

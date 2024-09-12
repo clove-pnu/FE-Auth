@@ -5,7 +5,6 @@ import { LoginResponse, SignUpResponse } from '../utils/type';
 interface SignupParams {
   email: string;
   password: string;
-  username: string;
   userType: 'CLIENT' | 'PROVIDER';
 }
 
@@ -17,13 +16,11 @@ interface LoginParams {
 export async function signUp({
   email,
   password,
-  username,
   userType,
 }: SignupParams): Promise<AxiosResponse<SignUpResponse>> {
   return authInstance.post('/signup', {
     email,
     password,
-    userName: username,
     authority: userType,
   });
 }
