@@ -26,7 +26,16 @@ export default function UserStatusBar() {
 
   return (
     <div className={styles.container}>
-      <Link to="./owner">
+      <Link to={process.env.NODE_ENV === 'production'
+        ? 'http://34.47.117.26/page/main/myTicket'
+        : 'http://localhost:3000/myTicket'}
+      >
+        티켓 관리
+      </Link>
+      <Link to={process.env.NODE_ENV === 'production'
+        ? 'http://34.47.117.26/page/main/owner'
+        : 'http://localhost:3000/owner'}
+      >
         공연 관리
       </Link>
       <Divider />
