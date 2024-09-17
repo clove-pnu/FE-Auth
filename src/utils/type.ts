@@ -1,5 +1,8 @@
 export interface Auth {
   isLogin: boolean;
+  email: string;
+  userType: 'CLIENT' | 'PROVIDER';
+  accessToken: string;
 }
 
 export interface SignUpResponse {
@@ -7,7 +10,6 @@ export interface SignUpResponse {
 }
 
 export interface LoginResponse {
-  grantType: string;
-  accessToken: string;
-  accessTokenExpiresIn: number;
+  email: string;
+  authority: 'CLIENT' | 'PROVIDER';
 }

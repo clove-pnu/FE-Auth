@@ -8,7 +8,7 @@ import { fetchWithHandler } from '../utils/fetchWithHandler';
 import { LoginResponse } from '../utils/type';
 import { login } from '../apis/auth';
 import styles from './styles/LoginPage.module.css';
-import { setLogin } from '../utils/auth';
+import { setAccessToken, setUserEmail, setUserType } from '../utils/auth';
 
 export default function LoginPage() {
   const [email, setEmail] = useState<string>('');
@@ -27,9 +27,20 @@ export default function LoginPage() {
     e.preventDefault();
 
     fetchWithHandler<LoginResponse>(() => login({ email, password }), {
-      onSuccess: () => {
-        setLogin();
-        setAuth({ isLogin: true });
+      onSuccess: (response) => {
+        const accessToken = response.headers.authorization;
+        const userEmail = response.data.email;
+        const userType = response.data.authority;
+
+        setAccessToken(accessToken);
+        setUserEmail(userEmail);
+        setUserType(userType);
+        setAuth({
+          isLogin: true,
+          email: userEmail,
+          userType,
+          accessToken,
+        });
       },
       onError: () => {
         alert('로그인에 실패하였습니다.');
