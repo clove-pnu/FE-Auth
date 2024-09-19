@@ -1,3 +1,15 @@
+/* Desktop */
+@media (min-width: 1024px) {
+  
+}
+/* Mobile */
+@media (max-width: 1023px) {
+  .email {
+    display: none;
+  }
+}
+
+/* All */
 .container {
   display: flex;
   flex-direction: row;
@@ -6,7 +18,14 @@
   padding: 0.5rem;
 }
 
+.link {
+  flex-shrink: 0;
+  text-decoration: none;
+  color: #000;
+}
+
 .logout {
+  flex-shrink: 0;
   outline: none;
   border: none;
   cursor: pointer;

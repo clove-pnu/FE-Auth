@@ -24,11 +24,22 @@ export default function UserStatusBar() {
   if (!auth.isLogin) {
     return (
       <div className={styles.container}>
-        <Link to={process.env.NODE_ENV === 'production'
-          ? 'http://34.47.117.26/page/main/login'
-          : 'http://localhost:3000/page/main/login'}
+        <Link
+          to={process.env.NODE_ENV === 'production'
+            ? 'http://34.47.117.26/page/main/login'
+            : 'http://localhost:3000/page/main/login'}
+          className={styles.link}
         >
           로그인
+        </Link>
+        <Divider />
+        <Link
+          to={process.env.NODE_ENV === 'production'
+            ? 'http://34.47.117.26/page/main/signup'
+            : 'http://localhost:3000/page/main/signup'}
+          className={styles.link}
+        >
+          회원가입
         </Link>
       </div>
     );
@@ -36,33 +47,36 @@ export default function UserStatusBar() {
 
   return (
     <div className={styles.container}>
-      <div>{auth.email}</div>
+      <div className={styles.email}>{auth.email}</div>
+      <Divider />
       {auth.userType === 'CLIENT' && (
-      <Link to={process.env.NODE_ENV === 'production'
-        ? 'http://34.47.117.26/page/main/myTicket'
-        : 'http://localhost:3000/page/main/myTicket'}
+      <Link
+        to={process.env.NODE_ENV === 'production'
+          ? 'http://34.47.117.26/page/main/myTicket'
+          : 'http://localhost:3000/page/main/myTicket'}
+        className={styles.link}
       >
         티켓 관리
       </Link>
       )}
       {auth.userType === 'PROVIDER' && (
-      <Link to={process.env.NODE_ENV === 'production'
-        ? 'http://34.47.117.26/page/main/owner'
-        : 'http://localhost:3000/page/main/owner'}
+      <Link
+        to={process.env.NODE_ENV === 'production'
+          ? 'http://34.47.117.26/page/main/owner'
+          : 'http://localhost:3000/page/main/owner'}
+        className={styles.link}
       >
         공연 관리
       </Link>
       )}
       <Divider />
-      <div>
-        <button
-          className={styles.logout}
-          type="button"
-          onClick={handleLogout}
-        >
-          로그아웃
-        </button>
-      </div>
+      <button
+        className={styles.logout}
+        type="button"
+        onClick={handleLogout}
+      >
+        로그아웃
+      </button>
     </div>
   );
 }

@@ -8,8 +8,10 @@
 
 .homeLink {
   margin: 1rem 0;
-  font-size: 2rem;
-  font-weight: 700;
+  color: black;
+}
+
+.link {
   text-decoration: none;
   color: black;
 }
