@@ -1,14 +1,3 @@
-/* Desktop */
-@media (min-width: 1024px) {
-  
-}
-/* Mobile */
-@media (max-width: 1023px) {
-  .email {
-    display: none;
-  }
-}
-
 /* All */
 .container {
   display: flex;
@@ -31,4 +20,16 @@
   cursor: pointer;
   font-size: 1rem;
   padding: 0;
+}
+
+/* Mobile */
+@media (width < 1024px) {
+  .email {
+    display: none;
+  }
+}
+
+/* Desktop */
+@media (width >= 1024px) {
+  
 }

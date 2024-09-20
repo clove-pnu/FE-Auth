@@ -10,6 +10,8 @@
 .label {
   padding: 0 0.5rem;
   font-weight: bold;
+  white-space: nowrwap;
+  flex-shrink: 0;
 }
 
 .input {
