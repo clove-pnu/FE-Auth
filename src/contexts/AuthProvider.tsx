@@ -14,7 +14,8 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     userType: null,
     accessToken: null,
   });
-  const value = useMemo(() => ({ auth, setAuth }), [auth, setAuth]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const value = useMemo(() => ({ auth, setAuth, loading }), [auth, setAuth, loading]);
 
   useEffect(() => {
     const accessToken = getAccessToken();
@@ -31,6 +32,8 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     } else {
       removeUserSessionData();
     }
+
+    setLoading(false);
   }, []);
 
   return (
