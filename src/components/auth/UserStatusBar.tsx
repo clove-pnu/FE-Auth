@@ -5,6 +5,8 @@ import styles from '../styles/UserStatusBar.module.css';
 import { logout } from '../../apis/auth';
 import { removeUserSessionData } from '../../utils/auth';
 
+const serverURL = 'http://cse.ticketclove.com';
+
 export default function UserStatusBar() {
   const { auth, setAuth } = useAuth();
 
@@ -26,7 +28,7 @@ export default function UserStatusBar() {
       <div className={styles.container}>
         <Link
           to={process.env.NODE_ENV === 'production'
-            ? 'http://34.47.117.26/page/main/login'
+            ? `${serverURL}/page/main/login`
             : 'http://localhost:3000/page/main/login'}
           className={styles.link}
         >
@@ -35,7 +37,7 @@ export default function UserStatusBar() {
         <Divider />
         <Link
           to={process.env.NODE_ENV === 'production'
-            ? 'http://34.47.117.26/page/main/signup'
+            ? `${serverURL}/page/main/signup`
             : 'http://localhost:3000/page/main/signup'}
           className={styles.link}
         >
@@ -52,7 +54,7 @@ export default function UserStatusBar() {
       {auth.userType === 'CLIENT' && (
       <Link
         to={process.env.NODE_ENV === 'production'
-          ? 'http://34.47.117.26/page/main/myTicket'
+          ? `${serverURL}/page/main/myTicket`
           : 'http://localhost:3000/page/main/myTicket'}
         className={styles.link}
       >
@@ -62,7 +64,7 @@ export default function UserStatusBar() {
       {auth.userType === 'PROVIDER' && (
       <Link
         to={process.env.NODE_ENV === 'production'
-          ? 'http://34.47.117.26/page/main/owner'
+          ? `${serverURL}/page/main/owner`
           : 'http://localhost:3000/page/main/owner'}
         className={styles.link}
       >
