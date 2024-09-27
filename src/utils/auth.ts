@@ -1,19 +1,34 @@
-import { LoginResponse } from './type';
+export function setAccessToken(token: string) {
+  localStorage.setItem('accessToken', token);
+}
 
-export function getExistToken() {
+export function getAccessToken() {
   return localStorage.getItem('accessToken');
 }
 
-export function getTokenExpireDate() {
-  return Number(localStorage.getItem('accessTokenExpiresIn'));
+export function setUserType(userType: 'CLIENT' | 'PROVIDER') {
+  localStorage.setItem('userType', userType);
 }
 
-export function setToken({ grantType, accessToken, accessTokenExpiresIn }: LoginResponse) {
-  localStorage.setItem('accessToken', `${grantType} ${accessToken}`);
-  localStorage.setItem('accessTokenExpiresIn', accessTokenExpiresIn.toString());
+export function getUserType(): 'CLIENT' | 'PROVIDER' {
+  const userType = localStorage.getItem('userType');
+  if (userType === 'CLIENT' || userType === 'PROVIDER') {
+    return userType;
+  }
+
+  return null;
 }
 
-export function deleteToken() {
+export function setUserEmail(email: string) {
+  localStorage.setItem('userEmail', email);
+}
+
+export function getUserEmail() {
+  return localStorage.getItem('userEmail');
+}
+
+export function removeUserSessionData() {
   localStorage.removeItem('accessToken');
-  localStorage.removeItem('accessTokenExpiresIn');
+  localStorage.removeItem('userType');
+  localStorage.removeItem('userEmail');
 }

@@ -1,12 +1,19 @@
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
 export default function PrivateRoute() {
-  const location = useLocation();
-  const { auth } = useAuth();
+  const { auth, loading } = useAuth();
+
+  if (loading) {
+    return null;
+  }
 
   if (!auth.isLogin) {
-    return <Navigate to="/login" replace state={{ from: location }} />;
+    window.location.href = process.env.NODE_ENV === 'production'
+      ? 'http://cse.ticketclove.com/page/main/login'
+      : 'http://localhost:3000/page/main/login';
+
+    return null;
   }
 
   return <Outlet />;

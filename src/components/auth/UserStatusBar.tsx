@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
-import { deleteToken } from '../../utils/auth';
 import useAuth from '../../hooks/useAuth';
 import Divider from '../common/Divider';
 import styles from '../styles/UserStatusBar.module.css';
+import { logout } from '../../apis/auth';
+import { removeUserSessionData } from '../../utils/auth';
+
+const serverURL = 'http://cse.ticketclove.com';
 
 export default function UserStatusBar() {
   const { auth, setAuth } = useAuth();
@@ -10,33 +13,72 @@ export default function UserStatusBar() {
   const handleLogout = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    deleteToken();
-    setAuth({ isLogin: false });
+    removeUserSessionData();
+    logout();
+    setAuth({
+      isLogin: false,
+      email: null,
+      userType: null,
+      accessToken: null,
+    });
   };
 
   if (!auth.isLogin) {
     return (
       <div className={styles.container}>
-        <Link to="/login">로그인</Link>
+        <Link
+          to={process.env.NODE_ENV === 'production'
+            ? `${serverURL}/page/main/login`
+            : 'http://localhost:3000/page/main/login'}
+          className={styles.link}
+        >
+          로그인
+        </Link>
+        <Divider />
+        <Link
+          to={process.env.NODE_ENV === 'production'
+            ? `${serverURL}/page/main/signup`
+            : 'http://localhost:3000/page/main/signup'}
+          className={styles.link}
+        >
+          회원가입
+        </Link>
       </div>
     );
   }
 
   return (
     <div className={styles.container}>
-      <Link to="./owner">
+      <div className={styles.email}>{auth.email}</div>
+      <Divider />
+      {auth.userType === 'CLIENT' && (
+      <Link
+        to={process.env.NODE_ENV === 'production'
+          ? `${serverURL}/page/main/myTicket`
+          : 'http://localhost:3000/page/main/myTicket'}
+        className={styles.link}
+      >
+        티켓 관리
+      </Link>
+      )}
+      {auth.userType === 'PROVIDER' && (
+      <Link
+        to={process.env.NODE_ENV === 'production'
+          ? `${serverURL}/page/main/owner`
+          : 'http://localhost:3000/page/main/owner'}
+        className={styles.link}
+      >
         공연 관리
       </Link>
+      )}
       <Divider />
-      <div>
-        <button
-          className={styles.logout}
-          type="button"
-          onClick={handleLogout}
-        >
-          로그아웃
-        </button>
-      </div>
+      <button
+        className={styles.logout}
+        type="button"
+        onClick={handleLogout}
+      >
+        로그아웃
+      </button>
     </div>
   );
 }

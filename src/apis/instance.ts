@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export const authInstance = axios.create({
-  baseURL: '/api/auth',
-  timeout: 3000,
+  baseURL: '/auth',
+  timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
   },

@@ -8,7 +8,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/page/auth/',
+    publicPath: 'auto',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.css'],

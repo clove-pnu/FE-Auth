@@ -2,6 +2,12 @@ import { AxiosResponse } from 'axios';
 import { authInstance } from './instance';
 import { LoginResponse, SignUpResponse } from '../utils/type';
 
+interface SignupParams {
+  email: string;
+  password: string;
+  userType: 'CLIENT' | 'PROVIDER';
+}
+
 interface LoginParams {
   email: string;
   password: string;
@@ -10,9 +16,12 @@ interface LoginParams {
 export async function signUp({
   email,
   password,
-}: LoginParams): Promise<AxiosResponse<SignUpResponse>> {
+  userType,
+}: SignupParams): Promise<AxiosResponse<SignUpResponse>> {
   return authInstance.post('/signup', {
-    email, password,
+    email,
+    password,
+    authority: userType,
   });
 }
 
@@ -23,4 +32,8 @@ export async function login({
   return authInstance.post('/login', {
     email, password,
   });
+}
+
+export async function logout() {
+  return authInstance.post('/logout');
 }
