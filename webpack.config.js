@@ -57,6 +57,8 @@ module.exports = {
         './LoginPage': './src/pages/LoginPage',
         './SignupPage': './src/pages/SignupPage',
         './PrivateRoute': './src/pages/PrivateRoute',
+        './CustomerRoute': './src/pages/CustomerRoute',
+        './ProviderRoute': './src/pages/ProviderRoute',
         './UserStatusBar': './src/components/auth/UserStatusBar',
         './reissue': './src/apis/reissue',
       },
