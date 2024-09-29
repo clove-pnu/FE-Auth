@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Divider from '../common/Divider';
 import styles from '../styles/UserStatusBar.module.css';
@@ -26,23 +25,23 @@ export default function UserStatusBar() {
   if (!auth.isLogin) {
     return (
       <div className={styles.container}>
-        <Link
-          to={process.env.NODE_ENV === 'production'
+        <a
+          href={process.env.NODE_ENV === 'production'
             ? `${serverURL}/page/main/login`
             : 'http://localhost:3000/page/main/login'}
           className={styles.link}
         >
           로그인
-        </Link>
+        </a>
         <Divider />
-        <Link
-          to={process.env.NODE_ENV === 'production'
+        <a
+          href={process.env.NODE_ENV === 'production'
             ? `${serverURL}/page/main/signup`
             : 'http://localhost:3000/page/main/signup'}
           className={styles.link}
         >
           회원가입
-        </Link>
+        </a>
       </div>
     );
   }
@@ -52,24 +51,24 @@ export default function UserStatusBar() {
       <div className={styles.email}>{auth.email}</div>
       <Divider />
       {auth.userType === 'CLIENT' && (
-      <Link
-        to={process.env.NODE_ENV === 'production'
+      <a
+        href={process.env.NODE_ENV === 'production'
           ? `${serverURL}/page/main/myTicket`
           : 'http://localhost:3000/page/main/myTicket'}
         className={styles.link}
       >
         티켓 관리
-      </Link>
+      </a>
       )}
       {auth.userType === 'PROVIDER' && (
-      <Link
-        to={process.env.NODE_ENV === 'production'
+      <a
+        href={process.env.NODE_ENV === 'production'
           ? `${serverURL}/page/main/owner`
           : 'http://localhost:3000/page/main/owner'}
         className={styles.link}
       >
         공연 관리
-      </Link>
+      </a>
       )}
       <Divider />
       <button
