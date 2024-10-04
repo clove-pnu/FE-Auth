@@ -4,16 +4,15 @@ import RegisterForm from '../components/auth/SignupForm';
 import { fetchWithHandler } from '../utils/fetchWithHandler';
 import { signUp } from '../apis/auth';
 import styles from './styles/SignupPage.module.css';
-import useTitle from '../hooks/useTitle';
 
 export default function SignupPage() {
+  document.title = '회원가입 | Clove 티켓';
+
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [userType, setUserType] = useState<'CLIENT' | 'PROVIDER'>('CLIENT');
   const navigate = useNavigate();
-
-  useTitle('회원가입 | Clove 티켓');
 
   const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

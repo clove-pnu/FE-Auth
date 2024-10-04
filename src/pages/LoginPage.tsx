@@ -9,16 +9,15 @@ import { LoginResponse } from '../utils/type';
 import { login } from '../apis/auth';
 import styles from './styles/LoginPage.module.css';
 import { setAccessToken, setUserEmail, setUserType } from '../utils/auth';
-import useTitle from '../hooks/useTitle';
 
 export default function LoginPage() {
+  document.title = '로그인 | Clove 티켓';
+
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const { auth, setAuth } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-
-  useTitle('로그인 | Clove 티켓');
 
   useEffect(() => {
     if (auth.isLogin) {
