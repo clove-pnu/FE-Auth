@@ -9,6 +9,7 @@ import { LoginResponse } from '../utils/type';
 import { login } from '../apis/auth';
 import styles from './styles/LoginPage.module.css';
 import { setAccessToken, setUserEmail, setUserType } from '../utils/auth';
+import useTitle from '../hooks/useTitle';
 
 export default function LoginPage() {
   const [email, setEmail] = useState<string>('');
@@ -16,6 +17,8 @@ export default function LoginPage() {
   const { auth, setAuth } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+
+  useTitle('로그인');
 
   useEffect(() => {
     if (auth.isLogin) {
