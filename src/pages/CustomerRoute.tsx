@@ -17,6 +17,8 @@ export default function CustomerRoute() {
   }
 
   if (auth.userType !== 'CLIENT') {
+    document.title = 'Clove 티켓';
+
     return <div>권한이 없습니다.</div>;
   }
 

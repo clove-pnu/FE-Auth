@@ -17,6 +17,8 @@ export default function ProviderRoute() {
   }
 
   if (auth.userType !== 'PROVIDER') {
+    document.title = 'Clove 티켓';
+
     return <div>권한이 없습니다.</div>;
   }
 
