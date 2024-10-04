@@ -13,7 +13,7 @@ export default function SignupPage() {
   const [userType, setUserType] = useState<'CLIENT' | 'PROVIDER'>('CLIENT');
   const navigate = useNavigate();
 
-  useTitle('회원가입');
+  useTitle('회원가입 | Clove 티켓');
 
   const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

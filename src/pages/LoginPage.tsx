@@ -18,7 +18,7 @@ export default function LoginPage() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  useTitle('로그인');
+  useTitle('로그인 | Clove 티켓');
 
   useEffect(() => {
     if (auth.isLogin) {
