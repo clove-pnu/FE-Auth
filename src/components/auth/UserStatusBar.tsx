@@ -22,7 +22,7 @@ export default function UserStatusBar() {
     });
   };
 
-  if (!auth.isLogin) {
+  if (!auth?.isLogin) {
     return (
       <div className={styles.container}>
         <a
