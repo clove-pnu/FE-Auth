@@ -45,7 +45,9 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
                 accessToken,
               });
             },
-            onError: () => {},
+            onError: () => {
+              removeUserSessionData();
+            },
           });
         } else {
           setAuth({
