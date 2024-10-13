@@ -8,7 +8,9 @@ import { fetchWithHandler } from '../utils/fetchWithHandler';
 import { LoginResponse } from '../utils/type';
 import { login } from '../apis/auth';
 import styles from './styles/LoginPage.module.css';
-import { setAccessToken, setUserEmail, setUserType } from '../utils/auth';
+import {
+  parseJwt, setAccessToken, setExp, setUserEmail, setUserType,
+} from '../utils/auth';
 
 export default function LoginPage() {
   document.title = '로그인 | Clove 티켓';
@@ -33,10 +35,13 @@ export default function LoginPage() {
         const accessToken = response.headers.authorization;
         const userEmail = response.data.email;
         const userType = response.data.authority;
+        const { exp } = parseJwt(accessToken);
 
         setAccessToken(accessToken);
         setUserEmail(userEmail);
         setUserType(userType);
+        setExp(exp);
+
         setAuth({
           isLogin: true,
           email: userEmail,
